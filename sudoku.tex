@@ -1,0 +1,109 @@
+% hello.tex - Our first LaTeX example!
+\documentclass{article}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+
+%\usepackage{sectsty}
+%\allsectionsfont{\usefont{OT1}{phv}{bc}{n}\selectfont}
+
+\newcommand{\code}[1]{
+	\lstset{language=c++}
+	\lstset{commentstyle=\textit}
+	\lstset{tabsize=2}
+	% the size of the fonts that are used for the code
+	\lstset{basicstyle=\footnotesize}
+	%\lstset{numbers=left}
+	%\lstset{stepnumber=1}
+	#1
+}
+
+\begin{document}
+
+\title{Simple Sudoku Generation Algorithms}
+\author{George Craig}
+\date{30 October, 2010}
+\maketitle
+
+\begin{abstract}
+Illustrate three simple Sudoku generation algorithms, using C/C++ sample code.
+\end{abstract}
+
+% \section{Solver}
+% Create a solver function first
+
+\section{Algorithms}
+
+\subsection{"Yin Yang"}
+
+Given:
+
+\begin{center}\includegraphics[width=60mm,height=60mm]{grid.png}\end{center}
+
+\begin{enumerate}
+\item For each Latin square (9 3x3 squares), generate a 9-digit random integer array. Randomly shuffle each value in the array: i.e., \texttt{std::random\_shuffle()}. Each term of the array = $n_{x}: n_{1}, n_{2} .. n_{9}$. 
+\begin{code}
+\begin{lstlisting}
+	int rdm_array[9];
+	int *p_rdm_array = &rdm_array[0];
+	std::random_shuffle(p_rdm_array, p_rdm_array + 9);
+\end{lstlisting}
+\end{code}
+
+\item Generate three (3) squares from the first 3 arrays. For each one, assign the values to a "free square"$^{1}$ - $Sq_{1}$, $Sq_{5}$, and $Sq_{9}$:
+\begin{code}
+\begin{lstlisting}
+	for (i=0;i<3;i++)
+	{
+		for (j=0;j<3;j++)
+		{
+			// iterate through square
+			square[i][j] = ++p_rdm_array;
+		}
+	}
+\end{lstlisting}
+\end{code}
+
+\footnote[1]{A "free square" being one that is not initially constrained from row/column checks.}
+
+\item Each square = $Ls_{1}, Ls_{5}, Ls_{9}$. 30\% of the puzzle is created.
+\item Iterate through the remaining rows and columns, assigning a value to the corresponding square from the associated array. For each assignment, run the validity check.
+\item If acceptable for each term, insert.
+\item Else, rotate through array for next acceptable term. (Speed improvement candidate)
+\item Run entire puzzle through solver. 
+	
+% \begin{enumerate}
+% \begin{itemize}
+
+\begin{enumerate}
+\item Is completely filled in
+\item Is valid latin square
+\end{enumerate}
+
+\end{enumerate}
+
+\subsection{Lookup Tables}
+
+\subsubsection{"Row/Column Swapper"}
+Start with a lookup table; Swap rows
+
+\subsubsection{"Term Swapper"}
+Start with a lookup table; swap like terms
+
+\section{Validation}
+I used the \textit{Rule of 45} to do simple validation that the puzzle was solved. Adding up all terms for a given row, column, and nonet should yield the value 45.
+
+\section{Performance}
+As expected, after looping through and generating a large number of puzzles ($>$10,000), the lookup-table algorithms were the fastest.
+
+\section{Thoughts}
+While the content of this document does not contain any new insight in generating or solving Sudoku puzzles, it was an exercise in (a) working with pointers and (b) creating new puzzles for my daughter.
+
+Aside from psuedo-randomness, I have no idea if any problems will manifest in these approaches that will limit the even-distribution set of valid, random solutions.
+
+% $^{33}_{17}Cl^{16}\rightarrow{n,n}~^{31}_{15}P^{16 }+~^4_2He^2$
+% $emf = ir$
+% $p = i^{2}r = iv$
+
+\end{document}
