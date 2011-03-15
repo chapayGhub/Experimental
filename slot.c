@@ -7,12 +7,12 @@
     george craig. all rights reserved.
     georgeacraig@gmail.com
 
-    (1) commaprint() cp'ed from comp.lang.c FAQ
+	(1) commaprint() cp'ed from comp.lang.c FAQ
 	(2) thanks mike fagan
 	(3) seed() cp'ed from julienne walker
-        http://www.eternallyconfuzzled.com/arts/jsw_art_rand.aspx
+	http://www.eternallyconfuzzled.com/arts/jsw_art_rand.aspx
 	(4) incredible lego slot machine
-        http://www.youtube.com/watch?v=ET1DoB5sKpo
+	http://www.youtube.com/watch?v=ET1DoB5sKpo
 */
 
 #include <stdio.h>
