@@ -1,6 +1,8 @@
 Experimental Source for Learning and Development
 
-slot.c	- slot machine statistics and probability analyzer
-cp.c	- copy files/directories
+slot.c		- slot machine statistics and probability analyzer
+cp.c		- copy files/directories
+sudoku.tex	- laTeX of simple sudoku creation
+sudoku.pdf	- 
 
 georgeacraig@gmail.com
