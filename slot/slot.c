@@ -1,19 +1,18 @@
 /*
-    slot machine analyzer
-
-    1 coin, 1 play
-
-    copyright (c) 2010
-    george craig. all rights reserved.
-    georgeacraig@gmail.com
-
-    (1) commaprint() cp'ed from comp.lang.c FAQ
-    (2) thanks mike fagan
-    (3) seed() cp'ed from julienne walker
-        http://www.eternallyconfuzzled.com/arts/jsw_art_rand.aspx
-    (4) incredible lego slot machine
-        http://www.youtube.com/watch?v=ET1DoB5sKpo
-*/
+ *  slot machine analyzer
+ *
+ *  1 coin, 1 play
+ *
+ *  copyright (c) 2010
+ *  georgeacraig@gmail.com. all rights reserved.
+ *
+ *  (1) commaprint() cp'ed from c faq
+ *  (2) thanks mike fagan
+ *  (3) seed() cp'ed from julienne walker
+ *      http://www.eternallyconfuzzled.com/arts/jsw_art_rand.aspx
+ *  (4) incredible lego slot machine
+ *      http://www.youtube.com/watch?v=ET1DoB5sKpo
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -139,7 +138,6 @@ const short num_paylines = sizeof(paylines)/sizeof(struct payline);
 const long handle_pulls = 10000000;
 const int tick = 500000;
 
-/* thx jw */
 unsigned seed()
 {
     time_t now = time(0);
@@ -200,7 +198,6 @@ void calc_results()
     hit_per = (total_hits / h) * 100.0F;
 }
 
-/* thx c-faq */
 char *currency(unsigned long n)
 {
     static int comma = ',';
@@ -419,13 +416,13 @@ void run()
     srand(seed());
 
     /*
-        -64 stop positions per reel
-        -3 reels
-        -64 * 64 * 64 = 262,144 total combinations
-        -odds of winning top payout = 1:262,144
-        -based on 10M handle pulls
-        -ridonkulous... play dice
-    */
+     * -64 stop positions per reel
+     * -3 reels
+     * -64 * 64 * 64 = 262,144 total combinations
+     * -odds of winning top payout = 1:262,144
+     * -based on 10M handle pulls
+     * -ridonkulous... play dice
+     */
 
     for (i=0; i<handle_pulls; i++)
     {
