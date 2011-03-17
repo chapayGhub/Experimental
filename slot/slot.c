@@ -75,21 +75,21 @@ struct payline paylines[] =
 {
     /* 15 different possible ways to win after each spin */
 
-    { "red, white and blue 7s", &red_white_blue_sevens, 2400 },
-    { "three red 7s", &all_three_red_sevens, 1199 },
-    { "three white 7s", &all_three_white_sevens, 200 },
-    { "three blue 7s", &all_three_blue_sevens, 150 },
-    { "any three 7s", &any_three_sevens, 80 },
-    { "red bar, white bar, blue bar", &red_white_blue_bars, 50 },
-    { "three blue bars", &all_three_blue_bars, 40 },
-    { "three white bars", &all_three_white_bars, 25 },
-    { "any red, white, blue", &any_redwhiteblue, 20 },
-    { "three red bars", &all_three_red_bars, 10 },
-    { "any three bars", &any_three_bars, 5 },
-    { "any three blue", &any_three_blue, 2 },
-    { "any three white", &any_three_white, 2 },
-    { "any three red", &any_three_red, 2 },
-    { "all spaces", &any_three_spaces, 1 }
+    { "red, white and blue 7s", 		&red_white_blue_sevens, 	2400 	},
+    { "three red 7s", 					&all_three_red_sevens, 		1199 	},
+    { "three white 7s", 				&all_three_white_sevens, 	200 	},
+    { "three blue 7s", 					&all_three_blue_sevens, 	150 	},
+    { "any three 7s", 					&any_three_sevens, 			80 		},
+    { "red bar, white bar, blue bar", 	&red_white_blue_bars, 		50 		},
+    { "three blue bars", 				&all_three_blue_bars, 		40 		},
+    { "three white bars", 				&all_three_white_bars,		25 		},
+    { "any red, white, blue", 			&any_redwhiteblue, 			20 		},
+    { "three red bars", 				&all_three_red_bars, 		10 		},
+    { "any three bars", 				&any_three_bars, 			5 		},
+    { "any three blue", 				&any_three_blue, 			2 		},
+    { "any three white", 				&any_three_white, 			2 		},
+    { "any three red", 					&any_three_red, 			2 		},
+    { "all spaces", 					&any_three_spaces, 			1		}
 };
 
 struct slot_machine sm =
