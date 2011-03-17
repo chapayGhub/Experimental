@@ -199,20 +199,20 @@ void calc_results()
 
 char *fmt_currency(unsigned long n)
 {
-	int pos, ctr;
-	char* buf = malloc (255 * sizeof (char));
+    int pos, ctr;
+    char* buf = malloc (255 * sizeof (char));
 
-	sprintf(buf, "$ ");
-	sprintf(&buf[2], "%d", n);
-	pos = strlen(buf);
-	
-	for (;pos > 5; pos -= 3) 
-	{
-		for (ctr = strlen(buf) + 1; ctr > pos - 4; buf[ctr+1]=buf[ctr--]);
-		buf[++ctr] = ',';
-	}
+    sprintf(buf, "$ ");
+    sprintf(&buf[2], "%d", n);
+    pos = strlen(buf);
 
-	return buf;
+    for (;pos > 5; pos -= 3)
+    {
+        for (ctr = strlen(buf) + 1; ctr > pos - 4; buf[ctr+1]=buf[ctr--]);
+        buf[++ctr] = ',';
+    }
+
+    return buf;
 }
 
 void display_results()
@@ -222,18 +222,18 @@ void display_results()
     int i;
     for (i=0; i<num_paylines; i++)
     {
-		char* payout = fmt_currency(paylines[i].pay_ctr);
+        char* payout = fmt_currency(paylines[i].pay_ctr);
         printf("%4d - %-28s = %-6d / %s\n",
             paylines[i].award,
             paylines[i].desc,
             paylines[i].hit_ctr,
             payout);
-		free(payout);
+        free(payout);
     }
 
-	char* ptotal_pays = fmt_currency(total_pays);	
-	char* phandle_pulls = fmt_currency(handle_pulls);		
-	
+    char* ptotal_pays = fmt_currency(total_pays);
+    char* phandle_pulls = fmt_currency(handle_pulls);
+
     printf(
         "\n"
         "totals:\n\n"
@@ -244,14 +244,14 @@ void display_results()
         "%17s = %2.1f%%\n"
         "%17s = %lu/%lu\n",
         "payback percent",   payback_per,
-		"hold percent",      hold_per,
-		"played (coin-in)",  phandle_pulls,
-		"payout (coin-out)", ptotal_pays,
-		"hit percent",       hit_per,
-		"hits/total games",  total_hits, handle_pulls);
-		
-	free(ptotal_pays);
-	free(phandle_pulls);
+        "hold percent",      hold_per,
+        "played (coin-in)",  phandle_pulls,
+        "payout (coin-out)", ptotal_pays,
+        "hit percent",       hit_per,
+        "hits/total games",  total_hits, handle_pulls);
+
+    free(ptotal_pays);
+    free(phandle_pulls);
 }
 
 int compare_symbols(int x)
@@ -291,17 +291,17 @@ int any_three_red()
 int any_three_bars()
 {
     return ((
-            (p->pos[0] == SYM_WHITE_BAR) |
-            (p->pos[0] == SYM_BLUE_BAR) |
-            (p->pos[0] == SYM_RED_BAR)) & (
+        (p->pos[0] == SYM_WHITE_BAR) |
+        (p->pos[0] == SYM_BLUE_BAR) |
+        (p->pos[0] == SYM_RED_BAR)) & (
 
-            (p->pos[1] == SYM_WHITE_BAR) |
-            (p->pos[1] == SYM_BLUE_BAR) |
-            (p->pos[1] == SYM_RED_BAR)) & (
+        (p->pos[1] == SYM_WHITE_BAR) |
+        (p->pos[1] == SYM_BLUE_BAR) |
+        (p->pos[1] == SYM_RED_BAR)) & (
 
-            (p->pos[2] == SYM_WHITE_BAR) |
-            (p->pos[2] == SYM_BLUE_BAR) |
-            (p->pos[2] == SYM_RED_BAR)));
+        (p->pos[2] == SYM_WHITE_BAR) |
+        (p->pos[2] == SYM_BLUE_BAR) |
+        (p->pos[2] == SYM_RED_BAR)));
 }
 
 int all_three_red_bars()
@@ -394,7 +394,6 @@ void check_spin()
 void run()
 {
     int i,j;
-
     srand(seed());
 
     /*
