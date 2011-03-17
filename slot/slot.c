@@ -221,6 +221,7 @@ char *currency(unsigned long n)
     return p;
 }
 
+/*
 void MoneyFloatToString(double Money)
 {
    char Buffer[255];
@@ -239,6 +240,7 @@ void MoneyFloatToString(double Money)
 
    printf("%s\n", Buffer);
 }
+*/
 
 void display_results()
 {

@@ -1,3 +1,10 @@
+# experimental .gitignore using codelite
+
 *.tags
 *.workspace
 *.session
+*.project
+*.out
+*.list
+*.mk
+*/Debug
