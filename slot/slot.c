@@ -75,22 +75,21 @@ struct payline
 struct payline paylines[] =
 {
     /* 15 different possible ways to win after each spin */
-
-    { "red, white and blue 7s",         &red_white_blue_sevens,     2400    },
-    { "three red 7s",                   &all_three_red_sevens,      1199    },
-    { "three white 7s",                 &all_three_white_sevens,    200     },
-    { "three blue 7s",                  &all_three_blue_sevens,     150     },
-    { "any three 7s",                   &any_three_sevens,          80      },
-    { "red bar, white bar, blue bar",   &red_white_blue_bars,       50      },
-    { "three blue bars",                &all_three_blue_bars,       40      },
-    { "three white bars",               &all_three_white_bars,      25      },
-    { "any red, white, blue",           &any_redwhiteblue,          20      },
-    { "three red bars",                 &all_three_red_bars,        10      },
-    { "any three bars",                 &any_three_bars,            5       },
-    { "any three blue",                 &any_three_blue,            2       },
-    { "any three white",                &any_three_white,           2       },
-    { "any three red",                  &any_three_red,             2       },
-    { "all spaces",                     &any_three_spaces,          1       }
+    { "red, white and blue 7s",       &red_white_blue_sevens,     2400    },
+    { "three red 7s",                 &all_three_red_sevens,      1199    },
+    { "three white 7s",               &all_three_white_sevens,    200     },
+    { "three blue 7s",                &all_three_blue_sevens,     150     },
+    { "any three 7s",                 &any_three_sevens,          80      },
+    { "red bar, white bar, blue bar", &red_white_blue_bars,       50      },
+    { "three blue bars",              &all_three_blue_bars,       40      },
+    { "three white bars",             &all_three_white_bars,      25      },
+    { "any red, white, blue",         &any_redwhiteblue,          20      },
+    { "three red bars",               &all_three_red_bars,        10      },
+    { "any three bars",               &any_three_bars,            5       },
+    { "any three blue",               &any_three_blue,            2       },
+    { "any three white",              &any_three_white,           2       },
+    { "any three red",                &any_three_red,             2       },
+    { "all spaces",                   &any_three_spaces,          1       }
 };
 
 struct slot_machine sm =
@@ -224,11 +223,13 @@ void display_results()
     int i;
     for (i=0; i<num_paylines; i++)
     {
-        printf("%d - %s = %d / %d\n",
+		char* payout = currency(paylines[i].pay_ctr);
+        printf("%4d - %-28s = %-6d / %s\n",
             paylines[i].award,
             paylines[i].desc,
             paylines[i].hit_ctr,
-            paylines[i].pay_ctr);
+            payout);
+		free(payout);
     }
 
 	char* ptotal_pays = currency(total_pays);	
@@ -237,19 +238,18 @@ void display_results()
     printf(
         "\n"
         "totals:\n\n"
-        "  payback percent = %2.1f%%\n"
-        "     hold percent = %2.1f%%\n"
-        " played (coin-in) = %s\n"
-        "payout (coin-out) = %s\n"
-        "      hit percent = %2.1f%%\n"
-        " hits/total games = %lu/%lu\n",
-        payback_per,
-        hold_per,
-        phandle_pulls,
-        ptotal_pays,
-        hit_per,
-        total_hits,
-        handle_pulls);
+        "%17s = %2.1f%%\n"
+        "%17s = %2.1f%%\n"
+        "%17s = %s\n"
+        "%17s = %s\n"
+        "%17s = %2.1f%%\n"
+        "%17s = %lu/%lu\n",
+        "payback percent",   payback_per,
+		"hold percent",      hold_per,
+		"played (coin-in)",  phandle_pulls,
+		"payout (coin-out)", ptotal_pays,
+		"hit percent",       hit_per,
+		"hits/total games",  total_hits, handle_pulls);
 		
 	free(ptotal_pays);
 	free(phandle_pulls);
