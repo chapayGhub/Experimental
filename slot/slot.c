@@ -16,6 +16,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 #include <time.h>
 #include <locale.h>
@@ -200,47 +201,21 @@ void calc_results()
 
 char *currency(unsigned long n)
 {
-    static int comma = ',';
-    static char retbuf[30];
-    char *p = &retbuf[sizeof(retbuf)-1];
-    int i = 0;
+	int pos, ctr;
+	char* buffer = malloc (255 * sizeof (char));
 
-    *p = '\0';
+	sprintf(buffer, "$ ");
+	sprintf(&buffer[2], "%d", n);
+	pos = strlen(buffer);
+	
+	for (;pos > 5; pos -= 3) 
+	{
+		for (ctr = strlen(buffer) + 1; ctr > pos - 4; buffer[ctr+1]=buffer[ctr--]);
+		buffer[++ctr] = ',';
+	}
 
-    do {
-        if(i%3 == 0 && i != 0)
-            *--p = comma;
-        *--p = '0' + n % 10;
-        n /= 10;
-        i++;
-    } while(n != 0);
-
-    --p;
-    *p='$';
-
-    return p;
+	return buffer;
 }
-
-/*
-void MoneyFloatToString(double Money)
-{
-   char Buffer[255];
-   int Position, Counter;
-
-   sprintf(Buffer, "$ ");
-   sprintf(&Buffer[2], "%f", Money);
-   for (Position = 0; Buffer[Position] != '.'; Position++);
-   Buffer[Position+3] = 0;
-
-   for (;Position > 5; Position -= 3) 
-   {
-      for (Counter = strlen(Buffer) + 1; Counter > Position - 4; Buffer[Counter+1]=Buffer[Counter--]);
-      Buffer[++Counter] = ',';
-   }
-
-   printf("%s\n", Buffer);
-}
-*/
 
 void display_results()
 {
@@ -256,22 +231,28 @@ void display_results()
             paylines[i].pay_ctr);
     }
 
+	char* ptotal_pays = currency(total_pays);	
+	char* phandle_pulls = currency(handle_pulls);		
+	
     printf(
         "\n"
         "totals:\n\n"
-        "payback percent = %2.1f%%\n"
-        "hold percent = %2.1f%%\n"
-        "played (coin-in) = $%lu\n"
+        "  payback percent = %2.1f%%\n"
+        "     hold percent = %2.1f%%\n"
+        " played (coin-in) = %s\n"
         "payout (coin-out) = %s\n"
-        "hit percent = %2.1f%%\n"
-        "hits/total games = %lu/%lu\n",
+        "      hit percent = %2.1f%%\n"
+        " hits/total games = %lu/%lu\n",
         payback_per,
         hold_per,
-        handle_pulls,
-        currency(total_pays),
+        phandle_pulls,
+        ptotal_pays,
         hit_per,
         total_hits,
         handle_pulls);
+		
+	free(ptotal_pays);
+	free(phandle_pulls);
 }
 
 int compare_symbols(int x)
