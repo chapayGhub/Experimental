@@ -3,14 +3,13 @@
  *
  *  1 coin, 1 play
  *
- *  copyright (c) 2010
+ *  copyright (c) 2010, 2011
  *  georgeacraig@gmail.com. all rights reserved.
  *
- *  (1) commaprint() cp'ed from c faq
- *  (2) thanks mike fagan
- *  (3) seed() cp'ed from julienne walker
+ *  (1) thanks mike fagan
+ *  (2) seed() cp'ed from julienne walker
  *      http://www.eternallyconfuzzled.com/arts/jsw_art_rand.aspx
- *  (4) incredible lego slot machine
+ *  (3) incredible lego slot machine
  *      http://www.youtube.com/watch?v=ET1DoB5sKpo
  */
 
@@ -75,21 +74,21 @@ struct payline
 struct payline paylines[] =
 {
     /* 15 different possible ways to win after each spin */
-    { "red, white and blue 7s",       &red_white_blue_sevens,     2400    },
-    { "three red 7s",                 &all_three_red_sevens,      1199    },
-    { "three white 7s",               &all_three_white_sevens,    200     },
-    { "three blue 7s",                &all_three_blue_sevens,     150     },
-    { "any three 7s",                 &any_three_sevens,          80      },
-    { "red bar, white bar, blue bar", &red_white_blue_bars,       50      },
-    { "three blue bars",              &all_three_blue_bars,       40      },
-    { "three white bars",             &all_three_white_bars,      25      },
-    { "any red, white, blue",         &any_redwhiteblue,          20      },
-    { "three red bars",               &all_three_red_bars,        10      },
-    { "any three bars",               &any_three_bars,            5       },
-    { "any three blue",               &any_three_blue,            2       },
-    { "any three white",              &any_three_white,           2       },
-    { "any three red",                &any_three_red,             2       },
-    { "all spaces",                   &any_three_spaces,          1       }
+    { "red, white and blue 7s",       &red_white_blue_sevens,  2400 },
+    { "three red 7s",                 &all_three_red_sevens,   1199 },
+    { "three white 7s",               &all_three_white_sevens, 200  },
+    { "three blue 7s",                &all_three_blue_sevens,  150  },
+    { "any three 7s",                 &any_three_sevens,       80   },
+    { "red bar, white bar, blue bar", &red_white_blue_bars,    50   },
+    { "three blue bars",              &all_three_blue_bars,    40   },
+    { "three white bars",             &all_three_white_bars,   25   },
+    { "any red, white, blue",         &any_redwhiteblue,       20   },
+    { "three red bars",               &all_three_red_bars,     10   },
+    { "any three bars",               &any_three_bars,         5    },
+    { "any three blue",               &any_three_blue,         2    },
+    { "any three white",              &any_three_white,        2    },
+    { "any three red",                &any_three_red,          2    },
+    { "all spaces",                   &any_three_spaces,       1    }
 };
 
 struct slot_machine sm =
@@ -198,22 +197,22 @@ void calc_results()
     hit_per = (total_hits / h) * 100.0F;
 }
 
-char *currency(unsigned long n)
+char *fmt_currency(unsigned long n)
 {
 	int pos, ctr;
-	char* buffer = malloc (255 * sizeof (char));
+	char* buf = malloc (255 * sizeof (char));
 
-	sprintf(buffer, "$ ");
-	sprintf(&buffer[2], "%d", n);
-	pos = strlen(buffer);
+	sprintf(buf, "$ ");
+	sprintf(&buf[2], "%d", n);
+	pos = strlen(buf);
 	
 	for (;pos > 5; pos -= 3) 
 	{
-		for (ctr = strlen(buffer) + 1; ctr > pos - 4; buffer[ctr+1]=buffer[ctr--]);
-		buffer[++ctr] = ',';
+		for (ctr = strlen(buf) + 1; ctr > pos - 4; buf[ctr+1]=buf[ctr--]);
+		buf[++ctr] = ',';
 	}
 
-	return buffer;
+	return buf;
 }
 
 void display_results()
@@ -223,7 +222,7 @@ void display_results()
     int i;
     for (i=0; i<num_paylines; i++)
     {
-		char* payout = currency(paylines[i].pay_ctr);
+		char* payout = fmt_currency(paylines[i].pay_ctr);
         printf("%4d - %-28s = %-6d / %s\n",
             paylines[i].award,
             paylines[i].desc,
@@ -232,8 +231,8 @@ void display_results()
 		free(payout);
     }
 
-	char* ptotal_pays = currency(total_pays);	
-	char* phandle_pulls = currency(handle_pulls);		
+	char* ptotal_pays = fmt_currency(total_pays);	
+	char* phandle_pulls = fmt_currency(handle_pulls);		
 	
     printf(
         "\n"
