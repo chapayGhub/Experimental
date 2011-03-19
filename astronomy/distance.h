@@ -5,7 +5,13 @@
 
 typedef struct coordinates
 {
+	/* name of location */
+	char *description;
+
+	/* latitude; N=+, S=-; i.e., 42 deg N is +42 */
 	float lat;
+
+	/* longitude; E=+, W=- */
 	float lon;
 
 } coordinate;
@@ -16,31 +22,15 @@ typedef struct coordinates
  * Parameters: latitude, longitude
  * Returns distance in miles.
  */
-float calc_distance(coordinate a, coordinate b)
+float calc_distance(coordinate src, coordinate des)
 {
-	float lat_delta = (a.lat - b.lat) * 69.1;
-	float lon_delta = (a.lon - b.lon) * 69.1 * cos(a.lat / 57.3);
-	return sqrt( (lat_delta * lat_delta) + (lon_delta * lon_delta) );
+	float lat_delta = (src.lat - des.lat) * 69.1;
+	float lon_delta = (src.lon - des.lon) * 69.1 * cos(src.lat / 57.3);
+	return sqrt((lat_delta * lat_delta) + (lon_delta * lon_delta));
 }
 
 /*
-struct location
-{
-	char* city;
-	float latitude;
-	float longitude;
-};
-
-struct location locations[] =
-{
-	{	"Chicago",	42.0,	-87.5	}
-};
-
-	N = +	S = -
-	E = +	W = -
-
 	City			Latitude	Longitude
-
 	Barrow			71 N		157 W
 	Buenos Aires	34 S		58 W
 	Cairo			30 N		31 E
