@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-typedef struct coordinates
+typedef struct coordinate
 {
 	/* name of location */
 	char *description;
