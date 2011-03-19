@@ -1,7 +1,8 @@
 Experimental Source for Learning and Development
 
-copy/		- copy/read write files
+astronomy/	- astronomical functions
 slot/		- slot machine statistics and probability analyzer
 sudoku/		- laTeX of simple sudoku creation
+utils/		- file utilities
 
 georgeacraig@gmail.com
