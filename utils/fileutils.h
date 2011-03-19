@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <sys/times.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+/*#include <sys/times.h>*/
 
 /*
  * Very simple method to copy a file.
@@ -52,9 +52,9 @@ int copy_filemem (char *src, char *des)
 	char * buffer;
 	size_t result;
 
-	struct tms before, after;
+	/*struct tms before, after;*/
 
-	times(&before);
+	/*times(&before);*/
 
 	pFile = fopen ( src, "rb" );
 	if (pFile==NULL) {fputs ("File error",stderr); exit (1);}
@@ -85,12 +85,14 @@ int copy_filemem (char *src, char *des)
 	fclose (pFile);
 	free (buffer);
 
+	/*
 	times(&after);
 	printf("done...\n");
 	printf("User time: %ld seconds\n", after.tms_utime -
 	before.tms_utime);
 	printf("System time: %ld seconds\n", after.tms_stime -
 	before.tms_stime);
+	*/
 
 	return(0);
 }
