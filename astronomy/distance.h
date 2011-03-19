@@ -3,17 +3,24 @@
 
 #include <math.h>
 
+typedef struct coordinates
+{
+	float lat;
+	float lon;
+
+} coordinate;
+
 /*
  * Calculate the approximate distance between two points on Earth.
  * http://www.meridianworlddata.com/Distance-calculation.asp
  * Parameters: latitude, longitude
  * Returns distance in miles.
  */
-float calc_distance(float lat2, float lon2, float lat1, float lon1)
+float calc_distance(coordinate a, coordinate b)
 {
-	float lat = (lat2 - lat1) * 69.1;
-	float lon = (lon2 - lon1) * 69.1 * cos(lat1 / 57.3);
-	return sqrt( (lat * lat) + (lon * lon) );
+	float lat_delta = (a.lat - b.lat) * 69.1;
+	float lon_delta = (a.lon - b.lon) * 69.1 * cos(a.lat / 57.3);
+	return sqrt( (lat_delta * lat_delta) + (lon_delta * lon_delta) );
 }
 
 /*
