@@ -11,10 +11,10 @@ void calculate()
 	coordinate begin = 	{ "", 0.0, 0.0 };
 	coordinate end = 	{ "", 0.0, -180.0 };
 
-	printf("%35s: %5.2f miles\n", "Chicago to Birmingham*", 			calc_distance(src, des));
-	printf("%35s: %5.2f miles\n", "Prime Meridian to Intl Date Line", 	calc_distance(begin, end));
-	printf("%35s: %5.2f miles\n", "1/2 Earth's circumference", 			24901.55 / 2.0);
-	printf("%35s: %5.2f miles\n", "Earth's circumference", 				24901.55);
+	printf("%35s: %5.2f miles\n", "Chicago to Birmingham*", calc_distance(src, des));
+	printf("%35s: %5.2f miles\n", "Prime Meridian to Intl Date Line", calc_distance(begin, end));
+	printf("%35s: %5.2f miles\n", "1/2 Earth's circumference", 24901.55 / 2.0);
+	printf("%35s: %5.2f miles\n", "Earth's circumference", 24901.55);
 	printf("%35s \n", "* that's too far :(");
 }
 
