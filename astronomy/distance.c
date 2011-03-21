@@ -17,9 +17,10 @@ void calculate()
 	printf("%35s: %5.2f miles\n", "Earth's circumference", 24901.55);
 	printf("%35s \n", "* that's too far :(");
 }
-
+/*
 int main(int ac, char **av)
 {
 	calculate();
 	return(0);
 }
+*/

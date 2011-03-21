@@ -6,7 +6,7 @@
 typedef struct coordinate
 {
 	/* name of location */
-	char *description;
+	char *description;clear
 
 	/* latitude; N=+, S=-; i.e., 42 deg N is +42 */
 	float lat;
@@ -24,6 +24,7 @@ typedef struct coordinate
  */
 float calc_distance(coordinate src, coordinate des)
 {
+    // 57.3 deg = 1 rad
 	float lat_delta = (src.lat - des.lat) * 69.1;
 	float lon_delta = (src.lon - des.lon) * 69.1 * cos(src.lat / 57.3);
 	return sqrt((lat_delta * lat_delta) + (lon_delta * lon_delta));

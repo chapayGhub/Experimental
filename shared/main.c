@@ -44,10 +44,15 @@ int main(void)
 /*
 
 	1. gcc -c subsystem.c
-	2. gcc -shared -o subsystem.dll subsystem.o
+	2. gcc -shared -fPIC -o subsystem.dll subsystem.o
 	3. gcc -o main main.c -L./ -lsubsystem -lpthread
 	   or
 	   gcc -o main main.c -L./ -lsubsystem
 	   gcc -o main main.c -lpthread
+
+	1. gcc -c -fPIC subsystem.c 
+	2. gcc -shared subsystem.o -o subsystem.so
+	3. 
+	4. 
 
 */
