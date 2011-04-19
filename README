@@ -1,6 +1,7 @@
 Experimental Source for Learning and Development
 
 astronomy/	- astronomical functions
+menu/		- menu manager groovy prototype
 slot/		- slot machine statistics and probability analyzer
 sudoku/		- laTeX of simple sudoku creation
 utils/		- file utilities
